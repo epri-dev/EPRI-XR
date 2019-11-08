@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#ffffff">
+    <title>EPRI XR </title>
+    <link rel="icon" href="img/icon-256.png">
+  <!--  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <meta name="description" content="EPRI XR.">
+    <!-- Origin Trial Token, feature = WebVR (For Chrome M62+), origin = https://webxrexperiments.com, expires = 2018-05-01 -->
+    <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M62+)" data-expires="2018-05-01" content="ArKeZe0EK5eAEXO1K+Uj07h/yA2ylN8xwt+12LVV8ReELbePVTiSBRd4GYOnKzHpFktLh/nkPafQFDuvMhVX4goAAABseyJvcmlnaW4iOiJodHRwczovL3dlYnhyZXhwZXJpbWVudHMuY29tOjQ0MyIsImZlYXR1cmUiOiJXZWJWUjEuMU02MiIsImV4cGlyeSI6MTUyNTE3ODYwNywiaXNTdWJkb21haW4iOnRydWV9">    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="vendor/aframe-master-custom.js"></script>
+    <!-- <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.js"></script> -->
+    <!-- <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script> -->
+    <script src="vendor/three.xr.js"></script>
+    <script src="vendor/aframe-xr.js"></script>
+    <script src="vendor/aframe-input-mapping-component.js"></script>
+    <!-- <script src="build.js"></script>-->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <style>
+.button {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+      .button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+  </head>
+  <body>
+  <div id="arui">
+      <div id="arui-step1">
+          <div id="arui-device-icon"><img src="assets/images/device-icon.png"/></div>
+          <div class="arui-text">Move around to detect a surface</div>
+      </div>
+      <div id="arui-step2">
+          <div class="arui-text">Tap to place</div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="header">
+          <div id="title"><h1>How to Use This Prototype</h1></div>
+      </div>
+      <div id="body">
+        <div id="upperSheet">
+          <div id="visualSheet">
+              
+              <p>
+                This prototype works best in Firefox on Android and on the Firefox XR Viewer on iOS. Some aspects work on Chrome and Chrome Canary on Android.
+            </p>
+   <div class="w3-bar">
+          <!-- This button is not black because I commented out the style sheet link since it messed with the grey line at the top of the page when rendered. -->
+   <p>
+     Android
+     </p>
+     <button class="button" onclick="window.location.href = 'www.epri-tromso.glitch.me/examples/ar_simplest/index_inverterspherecode.html';">
+              XR App on Google </button>    
+     <button class="button" onclick="window.location.href = 'http://play.google.com/store/apps/details?id=com.chrome.canary&hl=en_US/';">
+              Google Canary, (if Chrome doesn't work) </button>
+     
+      <p>
+     iOS
+     </p>
+            <button class="button" onclick="window.location.href = 'http://itunes.apple.com/us/app/webxr-viewer/id1295998056?mt=8/';">
+              Download iOS Web XR </button>
+           <button class="button" onclick="window.location.href = 'wxrv://gridar.glitch.me/examples/ar_simplest/index_inverterspherecode.html';">
+              iOS Firefox XR </button>
+ 
+            </div>
+          
+        </div>    
+   
+      </div>
+      <div id="footer">
+       Contact: mtinklepaugh@epri.com @oslogramm
+      </div>
+    </div>
+     
+  </body>
+</html>

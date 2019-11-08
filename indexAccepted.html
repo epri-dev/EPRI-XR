@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#ffffff">
+    <title>ENERGY XR </title>
+    <link rel="icon" href="img/icon-256.png">
+  <!--  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <meta name="description" content="EPRI XR.">
+    <!-- Origin Trial Token, feature = WebVR (For Chrome M62+), origin = https://webxrexperiments.com, expires = 2018-05-01 -->
+  <!--  <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M62+)" data-expires="2018-05-01" content="ArKeZe0EK5eAEXO1K+Uj07h/yA2ylN8xwt+12LVV8ReELbePVTiSBRd4GYOnKzHpFktLh/nkPafQFDuvMhVX4goAAABseyJvcmlnaW4iOiJodHRwczovL3dlYnhyZXhwZXJpbWVudHMuY29tOjQ0MyIsImZlYXR1cmUiOiJXZWJWUjEuMU02MiIsImV4cGlyeSI6MTUyNTE3ODYwNywiaXNTdWJkb21haW4iOnRydWV9">  -->   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="vendor/aframe-master-custom.js"></script>
+    <!-- <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.js"></script> -->
+    <!-- <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script> -->
+  <!--  <script src="vendor/three.xr.js"></script> -->
+    <!-- <script src="vendor/aframe-xr.js"></script> -->
+   <!-- <script src="vendor/aframe-input-mapping-component.js"></script> -->
+    <!-- <script src="build.js"></script>-->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <style>
+.button {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+      .button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+      
+.w3-bar-block .w3-dropdown-hover,.w3-bar-block .w3-dropdown-click{width:100%}
+.w3-bar-block .w3-dropdown-hover .w3-dropdown-content,.w3-bar-block .w3-dropdown-click .w3-dropdown-content{min-width:100%}
+.w3-bar-block .w3-dropdown-hover .w3-button,.w3-bar-block .w3-dropdown-click .w3-button{width:100%;text-align:left;padding:8px 16px}
+.w3-main,#main{transition:margin-left .4s}
+.w3-modal{z-index:3;display:none;padding-top:100px;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4)}
+.w3-modal-content{margin:auto;background-color:#fff;position:relative;padding:0;outline:0;width:600px}
+.w3-bar{width:100%;overflow:hidden}.w3-center .w3-bar{display:inline-block;width:auto}
+.w3-bar .w3-bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
+.w3-bar .w3-dropdown-hover,.w3-bar .w3-dropdown-click{position:static;float:left}
+.w3-bar .w3-button{white-space:normal}
+.w3-bar-block .w3-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
+.w3-bar-block.w3-center .w3-bar-item{text-align:center}.w3-block{display:block;width:100%}
+      
+.hi {font-size: 36px;border-bottom: 1px solid #cccccc;margin-bottom: 10px;}
+</style>
+  </head>
+  <body>
+  <div id="arui">
+      <div id="arui-step1">
+          <div id="arui-device-icon"><img src="assets/images/device-icon.png"/></div>
+          <div class="arui-text">Move around to detect a surface</div>
+      </div>
+      <div id="arui-step2">
+          <div class="arui-text">Tap to place</div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="header">
+          <div id="title"><h1> Energy XR</h1></div>
+          <div id="cart">EPRI</div>
+      </div>
+      <div id="body">
+        <div id="upperSheet">
+          <div id="visualSheet">
+              <div id="thumbs">
+                  
+               <!-- <div id="thumb0" class="thumb"><img src="assets/images/mobile.png"/></div> 
+                <div id="thumb1" class="thumb"><img src="assets/images/mono.png"/></div>
+                <div id="thumb2" class="thumb last selected"><img src="assets/images/stereo.png"/></div> -->
+                
+                <div id="thumb0" class="thumb"><img src="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Fone.PNG?v=1572323466609"/></div> 
+                <div id="thumb1" class="thumb"><img src="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Ftwo.PNG?v=1572323472039"/></div>
+                <div id="thumb2" class="thumb last selected"><img src="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Fthree.PNG?v=1572323482308"/></div>
+                
+              </div>
+              <div id="content3D">
+                <a-scene embedded xr="arAutostart: false">
+                  <a-assets>
+                    <img id="skymap" src="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Fsky.png?v=1567365795367" crossorigin="anonymous">
+                    <img id="floor" src="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Ffloor.png?v=1567365680263" crossorigin="anonymous">
+                  </a-assets> 
+                  
+                  <a-light type="point" light="color: #fff; intensity:0.5" position="3 10 1"></a-light>
+                  <a-light type="point" light="color: #fff; intensity:0.1" position="-3 10 0"></a-light>
+                  <a-light type="hemisphere" groundcolor="#888" intensity="0.8"></a-light>
+            
+                  <a-entity id="ground" position="0 0 0" rotation="0 0 0"
+                  gltf-model="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Fsubstation_blue_paint.glb?v=1572322978275"
+                  scale="20, 20, 20"
+                  material="shader:flat; src: #floor" xr="ar: false">
+                  </a-entity>
+                  
+                 <!--  <a-entity id="ground" position="-1 0 -3" rotation="0 270 0"
+                  gltf-model="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Fsubstation_blue.glb?v=1572319129821"
+                  scale="5 5 5"
+                  material="shader:flat; src: #floor" xr="ar: false">
+                  </a-entity> -->
+              
+               <a-entity id="ground" position="0 0 0" rotation="0 0 0"
+                  gltf-model="assets/models/world.glb"
+                  scale=".1 .1 .1"
+                  material="shader:flat; src: #floor" xr="ar: false">
+                  </a-entity>
+                  
+                  
+                  <a-entity id="cameraRig">
+                    <!-- camera -->
+                    <a-entity id="acamera" camera position="0 0 0" camera rotation="0 100 0" look-controls></a-entity>
+                    <!-- hand controls -->
+                    <a-entity id="left-hand" store-controls="hand: left" laser-controls="hand: left" raycaster="objects: .collidable" xr="ar: false"></a-entity>
+                    <a-entity id="right-hand" store-controls="hand: right" laser-controls="hand: right" raycaster="objects: .collidable" line="color: #118A7E" xr="ar: false"></a-entity>
+                  </a-entity>
+                  <!-- Meshes -->
+                  <a-entity class="collidable" id="meshContainer" position="0 0.75 -1.25">
+                   <!-- This is the box that populates the VR screen. There was also and entity box there which I imagine js changes to other primitives
+
+<a-entity id="geo0" geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5" material="color: #66ca9c" rotation="0 30 0" visible="true"></a-entity> -->
+                    <a-entity id="geo1" geometry="primitive: sphere; radius: 0.35" material="color: #66ca9c" visible="false"></a-entity>
+                    <a-entity id="geo2" geometry="primitive: cone; radiusBottom: 0.35; height: 0.5; segmentsRadial: 4" rotation="0 15 0" material="color: #66ca9c" visible="false"></a-entity>
+                </a-entity>
+                  <a-entity id="sky" geometry="primitive:sphere; radius:30; phiLength:360; phiStart:0; thetaLength:90" material="shader:flat; side:back; height:2048; src:#skymap; width:2048" xr="ar: false"></a-entity>
+                  <a-entity id="skyFloor" geometry="primitive:sphere; radius:30; phiLength:360; phiStart:0; thetaLength:90; thetaStart: 90" material="shader:flat; color: white; side:back; height:2048; width:2048" xr="ar: false"></a-entity>
+                  <a-entity reticle geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.05" material="color: #ffffff"></a-entity>
+                </a-scene>
+              </div>
+            </div>
+          
+        </div>
+              
+        <div>
+          
+       
+        
+        
+        <div id="sheet">
+         
+          <div id="">
+            
+            <p>
+<button class="button" onclick="window.location.href = 'indexAccepted.html';">
+              Reset </button> <p>
+
+             Energy XR uses Extended Reality (XR) to help explore complex concepts in transmission, distribution, and advanced telecommunications by using augmented, mixed, and virtual reality. The 3D substation above
+             is placed partially in Virtual Reality (VR) in this page and then is placed in a live video feed of the environment in the next by using Augmented and Mixed Reality (AR/MR). As a graphical user interface, it may
+             also be used to monitor and control systems from a mobile device or headset.
+   
+
+             
+           
+             
+  <div class="w3-bar">
+      
+          <!-- This button is not black because I commented out the style sheet link since it messed with the grey line at the top of the page when rendered. -->
+   
+   
+  
+     
+      <p> <b>
+     iOS</b>
+     </p>
+            
+    <button class="button" onclick="window.location.href = 'examples/ar_simplest/xrsector.html';">
+              Launch XR from WebXR App </button>
+    <p>The Mozilla WebXR viewer may be downloaded by pressing 'Get WebXR App'.</p>
+          
+              
+              <button class="button" onclick="window.location.href = 'http://itunes.apple.com/us/app/webxr-viewer/id1295998056?mt=8/';">
+              Get WebXR App </button>
+              
+                 <p>After downloading and opening WebXR, (1)press 'Launch XR from WebXR App' button again. (2) Touch outside of the AR Notification and (3) Enable usage of device motion and access to the camera.</p>
+              <!-- <button class="button" onclick="window.location.href = 'wxrv://eprixr.epri.com/examples/ar_simplest/xrsector.html';">
+              Launch XR from outside Firefox XR </button>-->
+   
+    <p> <b>
+     Android
+    </b> </p>
+     <button class="button" onclick="window.location.href = 'examples/ar_simplest/xrsector.html';">
+              XR App on Android </button>    
+     <!-- <button class="button" onclick="window.location.href = 'http://play.google.com/store/apps/details?id=com.chrome.canary&hl=en_US/';">
+              Google Canary, (if Chrome doesn't work) </button> -->
+ 
+            </div>
+     
+          <p> This mobile only prototype works on Firefox WebXR (iOS) and Chrome and Firefox on Android due third party software limitations. 
+             Please check your browser by using the button below before entering Extended Reality.</p>
+             
+                <div >
+                                <button class="button" onclick="myFunction()" href="#">Check Browser</button>
+                            </div>
+
+          <div id="productName">
+              More XR Research 
+          </div>
+          
+           <a class="img" href="">
+                <img src="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Fmain.PNG?v=1572324142265"/>
+            </a>
+          
+     
+          <p>
+            Below are reports of augmented, mixed, and virtual reality research (XR) used in training. The first two studies 
+            compare time on task with digital AR workflows versus traditional paper methods in IoT enabled field work. The other papers 
+            explore concepts of digitally transforming the operations center, data analysis, their respective spatial instrumentation and controls, 
+            and how to prototype them from a visual perspective using an open source library. 
+             </p>
+
+<button class="button" onclick="window.location.href = 'https://www.epri.com/#/pages/product/000000003002014696/?lang=en-US';">
+              XR Router Installation Training Pilot Study  </button>
+
+<button class="button" onclick="window.location.href = 'https://www.epri.com/#/pages/product/000000003002011041/&src=mail';">
+             XR for Storm Damage Assessment Telemetry Pilot Study  </button>
+
+<button class="button" onclick="window.location.href = 'https://www.epri.com/#/pages/product/000000003002014696/?lang=en-US';">
+              XR for Data Visualization Concepts </button>
+
+<button class="button" onclick="window.location.href = 'https://www.epri.com/#/pages/product/000000003002014308/?lang=en-US';">
+             XR for Energy Applications </button>
+             
+             <button class="button" onclick="window.location.href = 'https://www.epri.com/#/pages/product/000000003002017159/?lang=en-US';">
+             XR for Digital Transformation </button>
+
+
+         
+          
+     <div class="hi">
+            
+         
+          
+          <!-- <div class="hi">
+              References
+          </div>
+          
+          <div id="comments">
+            <div class="comment">[1] https://www.epri.com/#/pages/product/0000000030020110
+41/?lang=en-US</div>
+            <div class="comment">[2] https://www.epri.com/#/pages/product/0000000030020146
+96/?lang=en-US</div>
+            <div class="comment">[3] https://www.insurancejournal.com/news/national/
+2019/05/21/527033.htm</div>
+            <div class="comment">[4] https://blogs.wsj.com/cio/2018/08/01/lockheed-martindeploys-
+augmented-reality-for-spacecraft-manufacturing/</div>
+          </div>
+        </div>
+      </div> -->
+       <script>
+
+    function myFunction() { 
+     if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
+    {
+        alert('You are using Opera. For optimal experience, download Firefox before continuing to the VR site.');
+    }
+    else if(navigator.userAgent.indexOf("Chrome") != -1 )
+    {
+        alert('You are using Chrome. For optimal experience, download Firefox before continuing to the VR site.');
+    }
+    else if(navigator.userAgent.indexOf("Safari") != -1)
+    {
+        alert('Safari');
+    }
+    else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
+    {
+         alert('Firefox is the optimal browser. Please continue to the VR site.');
+    }
+    else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+    {
+      alert('You are using IE. For optimal experience, download Firefox before continuing to the VR site.'); 
+    }  
+    else 
+    {
+       alert('We could not detect which browser you are using. For optimal experience, download Firefox before continuing to the VR site.');
+    }
+    }
+    </script>
+
+
+      <div id="footer"> 
+       
+      </div>
+    </div>
+    </div>
+  </body>
+</html>

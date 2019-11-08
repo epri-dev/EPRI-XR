@@ -1,0 +1,196 @@
+<html>
+	<head>
+		<title>AR simplest example</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body, html {
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				-webkit-user-select: none;
+				user-select: none;
+			}
+			#target {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+			}
+			.common-message {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				font-size: 20px;
+			}
+      
+          .column {
+  float: left;
+  width: 33.33%;
+}
+      .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+		</style>
+		<link rel="stylesheet" href="../common.css"/>
+		<script src="../libs/three.min.js"></script>
+		<script src="../models/TeapotBufferGeometry.js"></script>
+    <script src="../libs/three-gltf-loader.js"></script>
+<!-- 	
+		<script type="module" src="../../polyfill/XRPolyfill.js"></script>
+		<script nomodule src="../../dist/webxr-polyfill.js"></script>
+ -->		
+ 		<script src="../../dist/webxr-polyfill.js"></script>
+		<script src="../common.js"></script>
+		
+	</head>
+	<body>
+		<div id="description">
+<!-- code goes in first div below to make hide  onclick="hideMe(this)" id="description" -->
+	
+      <h4>
+        Repair Battery
+      </h4>
+      <p>
+        Open the assembly on the right underside of the robot and insert the battery. 
+      </p>
+      <div class="row">
+	
+    <div class="column"> <form action="https://epri.glitch.me/examples/ar_simplest/index.html" >
+        <input type="submit" value="Back" />
+      </form> </div>
+     <div class="column">  <form action="https://epri.glitch.me/index.html" >
+        <input type="submit" value="Home" />
+       </form> </div>
+    </div> </div>
+    
+      
+      
+    
+   
+    
+    
+    
+    
+		<script>
+      
+      
+      
+      
+			/*
+			ARSimplestExample shows how to populate the content scene 
+			*/
+			class ARSimplestExample extends XRExampleBase {
+				constructor(domElement){
+					super(domElement, false)
+				}
+
+				// Called during construction to allow the app to populate the THREE.Scene
+				initializeScene(){
+					// Add a teapot at about eye level
+				
+        
+          
+           // Going to try to add 3D model here since all brackets seem closed but it is still in the script tag ../models/BoomBox/glTF-pbrSpecularGlossiness/BoomBox.gltf
+      
+      	// Add the boom box
+					loadGLTF('https://cdn.glitch.com/f485dc5e-a1b5-4091-8408-6411aea91377%2Fmodel%20(5).glb?1555529449400').then(gltf => {
+						gltf.scene.scale.set(3, 3, 3)
+						gltf.scene.position.set(4, 0, -9)
+						gltf.scene.quaternion.setFromAxisAngle(new THREE.Vector3(0, 1.2, 0), Math.PI)
+
+						gltf.scene.traverse(node => {
+							if (node.material && (node.material.isMeshStandardMaterial || (node.material.isShaderMaterial && node.material.envMap !== undefined))){
+								node.material.envMap = this.envMap
+								node.material.needsUpdate = true
+							}
+						})
+
+						this.floorGroup.add(gltf.scene)
+            this.floorGroup.add( axesHelper );
+					}).catch((...params) =>{
+						console.error('could not load gltf', ...params)
+					})
+          
+          
+          // Add the sphere 
+					loadGLTF('https://cdn.glitch.com/f485dc5e-a1b5-4091-8408-6411aea91377%2FSpaceRover.glb?1555366273984').then(gltf => {
+						gltf.scene.scale.set(1, 1, 1)
+						gltf.scene.position.set(-3, 0, -7)
+						gltf.scene.quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI)
+
+						gltf.scene.traverse(node => {
+							if (node.material && (node.material.isMeshStandardMaterial || (node.material.isShaderMaterial && node.material.envMap !== undefined))){
+								node.material.envMap = this.envMap
+								node.material.needsUpdate = true
+							}
+						})
+
+						this.floorGroup.add(gltf.scene)
+            this.floorGroup.add( axesHelper );
+					}).catch((...params) =>{
+						console.error('could not load gltf', ...params)
+					})
+          
+         /*box.position.set(0, 0.05, 0)
+					var axesHelper = AxesHelper( 0.2 );
+		            this.floorGroup.add( axesHelper );
+					this.floorGroup.add(box)
+*/
+					// Add some lights to the scene
+					this.scene.add(new THREE.AmbientLight('#FFF', 0.2))
+					const directionalLight = new THREE.DirectionalLight('#FFF', 0.6)
+					directionalLight.position.set(0, 10, 0)
+					this.scene.add(directionalLight)
+				}
+			}
+      
+    
+      
+      
+// no need for an evironment map here since it is AR, but do I see function AxesHelper in VR? Probably not since it should be different. 
+			function AxesHelper( size ) {
+				size = size || 1;
+
+				var vertices = [
+					0, 0, 0,	size, 0, 0,
+					0, 0, 0,	0, size, 0,
+					0, 0, 0,	0, 0, size
+				];
+
+				var colors = [
+					1, 0, 0,	1, 0.6, 0,
+					0, 1, 0,	0.6, 1, 0,
+					0, 0, 1,	0, 0.6, 1
+				];
+
+				var geometry = new THREE.BufferGeometry();
+				geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+				geometry.addAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
+
+				var material = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors } );
+
+				return new THREE.LineSegments(geometry, material);
+			}
+
+
+      // the code just below is positioned beneath the boom box in VR
+			window.addEventListener('DOMContentLoaded', () => {
+				setTimeout(() => {
+					try {
+						window.pageApp = new ARSimplestExample(document.getElementById('target'))
+					} catch(e) {
+						console.error('page error', e)
+					}
+				}, 1000)
+			})
+      
+      
+      
+      
+		</script>
+	</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#ffffff">
+    <title>ENERGY XR </title>
+    <link rel="icon" href="img/icon-256.png">
+  <!--  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <meta name="description" content="EPRI XR.">
+    <!-- Origin Trial Token, feature = WebVR (For Chrome M62+), origin = https://webxrexperiments.com, expires = 2018-05-01 -->
+  <!--  <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M62+)" data-expires="2018-05-01" content="ArKeZe0EK5eAEXO1K+Uj07h/yA2ylN8xwt+12LVV8ReELbePVTiSBRd4GYOnKzHpFktLh/nkPafQFDuvMhVX4goAAABseyJvcmlnaW4iOiJodHRwczovL3dlYnhyZXhwZXJpbWVudHMuY29tOjQ0MyIsImZlYXR1cmUiOiJXZWJWUjEuMU02MiIsImV4cGlyeSI6MTUyNTE3ODYwNywiaXNTdWJkb21haW4iOnRydWV9">  -->   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="vendor/aframe-master-custom.js"></script>
+    <!-- <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.js"></script> -->
+    <!-- <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script> -->
+  <!--  <script src="vendor/three.xr.js"></script> -->
+    <!-- <script src="vendor/aframe-xr.js"></script> -->
+   <!-- <script src="vendor/aframe-input-mapping-component.js"></script> -->
+    <!-- <script src="build.js"></script>-->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <style>
+.button {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+      .button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+      
+.w3-bar-block .w3-dropdown-hover,.w3-bar-block .w3-dropdown-click{width:100%}
+.w3-bar-block .w3-dropdown-hover .w3-dropdown-content,.w3-bar-block .w3-dropdown-click .w3-dropdown-content{min-width:100%}
+.w3-bar-block .w3-dropdown-hover .w3-button,.w3-bar-block .w3-dropdown-click .w3-button{width:100%;text-align:left;padding:8px 16px}
+.w3-main,#main{transition:margin-left .4s}
+.w3-modal{z-index:3;display:none;padding-top:100px;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4)}
+.w3-modal-content{margin:auto;background-color:#fff;position:relative;padding:0;outline:0;width:600px}
+.w3-bar{width:100%;overflow:hidden}.w3-center .w3-bar{display:inline-block;width:auto}
+.w3-bar .w3-bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
+.w3-bar .w3-dropdown-hover,.w3-bar .w3-dropdown-click{position:static;float:left}
+.w3-bar .w3-button{white-space:normal}
+.w3-bar-block .w3-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
+.w3-bar-block.w3-center .w3-bar-item{text-align:center}.w3-block{display:block;width:100%}
+      
+.hi {font-size: 36px;border-bottom: 1px solid #cccccc;margin-bottom: 10px;}
+</style>
+  </head>
+  <body>
+  <div id="arui">
+      <div id="arui-step1">
+          <div id="arui-device-icon"><img src="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Fmain.PNG?v=1572324142265"/></div>
+          <div class="arui-text">Move around to detect a surface</div>
+      </div>
+      <div id="arui-step2">
+          <div class="arui-text">Tap to place</div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="header">
+          <div id="title"><h1>ENERGY XR: Terms of Use </h1></div>
+          <div id="cart">EPRI</div>
+      </div>
+      <div id="body">
+        <div id="upperSheet">
+          <div id="visualSheet">
+            
+              
+            </div>
+          
+          <a class="img" href="">
+                <img src="https://cdn.glitch.com/2e68198e-8787-4ed9-99db-d2919c636dac%2Fmain.PNG?v=1572324142265"/>
+            </a>
+        </div>
+              
+        <div>
+          
+       
+        
+        
+        <div id="sheet">
+         
+          <div id="">
+            
+            <p>
+                ENERGY Extended Reality (XR) Beta Version 1 Electric Power Research Institute(EPRI) 3420 Hillview Ave. Palo Alto, CA 94304 Copyright © 2019 Electric Power Research Institute, Inc. All rights reserved. As a user of this EPRI preproduction software, you accept and acknowledge that: 
+                <p>This software is a beta version which may have problems that could potentially harm your system. EPRI will evaluate all tester suggestions and recommendations, but does not guarantee they will be incorporated into the final production product. 
+
+<p>As a beta tester, you agree to provide feedback as a condition of obtaining the preproduction software Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
+<p>
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following:  disclaimer in the documentation and / or other materials provided with the distribution Neither the name of EPRI nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+</p>
+ 
+
+          </div>
+          
+             
+  <div class="w3-bar">
+          <!-- This button is not black because I commented out the style sheet link since it messed with the grey line at the top of the page when rendered. -->
+  
+     <button class="button" onclick="window.location.href = 'indexAccepted.html';">
+              Accept</button>    
+     <button class="button" onclick="window.location.href = 'https://www.epri.com/#/pages/product/000000003002017159/?lang=en-US';">
+             Decline </button>
+ 
+            </div>
+            </div>
+          </div>
+          
+    </div>
+    </div>
+  </body>
+</html>
